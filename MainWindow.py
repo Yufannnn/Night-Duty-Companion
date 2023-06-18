@@ -1,6 +1,7 @@
 from datetime import date
 
 import pandas as pd
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QFileDialog, QFrame, QTextEdit, QApplication
 from PyQt5.QtCore import Qt
 
@@ -12,6 +13,8 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("NightDutyCompanion")
+        # set icon to be a png
+        self.setWindowIcon(QIcon("icon.png"))
         self.setFixedSize(800, 425)
 
         self.create_column_0()
