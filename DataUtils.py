@@ -23,8 +23,21 @@ def handle_drag_enter(event):
 
 def check_if_file_is_attendance_file(df):
     required_columns = ['ContactNo', 'Boarder', 'Bed', 'Date', 'Terminal Number', 'Scanned Time', 'Leave']
-    if not all(column in df.columns for column in required_columns):
-        raise Exception("File is not an attendance file.")
+
+    # Check if all required columns are present
+    missing_columns = [col for col in required_columns if col not in df.columns]
+    if missing_columns:
+        return False, f"Missing required columns: {', '.join(missing_columns)}"
+
+    # Check data types and format of specific columns
+    if not df['ContactNo'].astype(str).str.match(r'^\d{8}$').all():
+        return False
+
+    if not df['Boarder'].apply(lambda x: isinstance(x, str)).all():
+        return False
+
+    # All checks passed, it is an attendance file
+    return True
 
 
 def get_absent_students(df):

@@ -143,10 +143,6 @@ class MainWindow(QMainWindow):
 
         # Check if Date column contains the current date
         current_date = date.today().strftime("%d/%m/%Y")
-        # if not all dates are equal to current date
-        if not df['Date'].eq(current_date).all():
-            DataUtils.send_not_current_date_message()
-            return
 
         # Identify absent students
         absent_students = DataUtils.get_absent_students(df)
