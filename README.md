@@ -1,18 +1,17 @@
 # NightDutyCompanion
 
-NightDutyCompanion is a simple desktop application designed to assist with RIB routine night duty.
+NightDutyCompanion is a simple desktop application designed to assist with routine night duty management at a residential institution.
 
 ## Features
 
-- Analysis BMS Attendence file
-- Automatically message to be sent to the BMs
-- List out absent boarders with their number nad room no
-- List out boarders on leaves with their leave due time
-
+- Analyze BMS attendance files.
+- Automatically generate messages to be sent to the BMS.
+- List absent boarders with their contact numbers and room numbers.
+- List boarders on leave with their leave due time.
 
 ## Installation
 
-NightDutyCompanion can be installed by following these steps:
+To install NightDutyCompanion, follow these steps:
 
 1. Download the executable file from the [NightDutyCompanion releases page](https://github.com/Yufannnn/NightDutyCompanion/releases/).
 
@@ -20,4 +19,16 @@ NightDutyCompanion can be installed by following these steps:
 
 By downloading the executable file, you can directly run NightDutyCompanion without the need for Python or any additional dependencies.
 
-## How to use
+## How to Use
+
+Please refer to the [User Guide](https://yufannnn.github.io/NightDutyCompanion/) for detailed instructions on how to use NightDutyCompanion. The user guide provides step-by-step explanations and screenshots to help you get started with the application.
+
+## Note
+
+My friend and I have tested multiple times, the data downloading and cleaning process should last last than 1 minute. Also, the Automation process can prevent human errors, ideally.
+
+NightDutyCompanion is an ongoing project and may have potential bugs and feature limitations. Please don't solely rely on its results.
+
+Your feedback and suggestions are greatly appreciated. If you encounter any issues or have ideas for improvement, please feel free to contact me.
+
+Enjoy using NightDutyCompanion to simplify your night duty management tasks!
