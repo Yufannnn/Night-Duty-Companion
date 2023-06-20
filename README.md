@@ -1,4 +1,5 @@
 # NightDutyCompanion
+[![pages-build-deployment](https://github.com/Yufannnn/NightDutyCompanion/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Yufannnn/NightDutyCompanion/actions/workflows/pages/pages-build-deployment)
 
 NightDutyCompanion is a simple desktop application designed to assist RIB RAs with RIB routine night duty.
 
