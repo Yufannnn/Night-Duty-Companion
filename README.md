@@ -12,13 +12,33 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
 
 ## Installation
 
-To install NightDutyCompanion, follow these steps:
+NightDutyCompanion can be installed using the following methods based on your operating system:
+
+### Windows
 
 1. Download the executable file from the [NightDutyCompanion releases page](https://github.com/Yufannnn/NightDutyCompanion/releases/).
 
-2. Run the executable file `NightDutyCompanion.exe`.
+2. Run the downloaded executable file `NightDutyCompanion.exe` to install NightDutyCompanion. There is no need for additional dependencies or Python installation.
 
-By downloading the executable file, you can directly run NightDutyCompanion without the need for Python or any additional dependencies.
+### macOS and Linux
+
+1. Download the source code from the [NightDutyCompanion releases page](https://github.com/Yufannnn/NightDutyCompanion/releases/).
+
+2. Extract the downloaded zip file.
+
+3. Open a terminal and navigate to the extracted folder.
+
+4. Ensure you have Python installed on your system.
+
+5. Install the required dependencies by running the following command:
+```
+pip install -r requirements.txt
+```
+
+6. Once the dependencies are installed, run NightDutyCompanion by executing the following command in the terminal:
+```
+python NightDutyCompanion.py
+```
 
 ## How to Use
 
