@@ -1,78 +1,51 @@
-import re
-
-
-def generate_message_when_no_absentees(leave_due_today):
-    if len(leave_due_today) == 0:
-        final_message = "Hi BMs, All boarders are in and there are no one with leaves today.\nThank you!"
-        return final_message
+def generate_message(absent_students, boarders_on_leave):
+    if len(absent_students) == 0:
+        return generate_message_when_no_absentees(boarders_on_leave)
+    elif len(absent_students) == 1:
+        return generate_message_when_one_absentee(absent_students, boarders_on_leave)
     else:
-        absent_message = "Hi BMs, All boarders are in, except those with leaves:"
+        return generate_message_when_multiple_absentees(absent_students, boarders_on_leave)
+
+
+def generate_message_when_no_absentees(boarders_on_leave):
+    if len(boarders_on_leave) == 0:
+        return "Hi BMs, all boarders are in and there is no one with leaves today.\nThank you!"
+    else:
+        absent_message = "Hi BMs, all boarders are in, except for those with leaves:"
         leave_message = ""
-        leave_due_today = sorted(leave_due_today, key=lambda x: x['Bed'])
-        leave_pattern = r"(\w+) Leave\[Out on \d{2}/\d{2}/\d{4} \w+ \d{2}:\d{2} Come back on \d{2}/\d{2}/\d{4} \w+ (" \
-                        r"\d{2}:\d{2})"
-        for row in leave_due_today:
-            room_number = re.sub(r'^[^/]+/', '', row['Bed']).strip()
-            leave = row['Leave']
-            match = re.search(leave_pattern, leave)
-            if match:
-                leave_type = match.group(1)
-                return_time = match.group(2)
-                leave_message += f"- {room_number} {row['Boarder']} ({leave_type} Leave till {return_time})\n"
+        for boarder in boarders_on_leave:
+            leave_message += f"- {boarder.bed} {boarder.name} ({boarder.leave.return_time})"
 
-    final_message = f"{absent_message}\n{leave_message}"
-    return final_message + "Thank you!"
+    return f"{absent_message}\n{leave_message}\nThank you!"
 
 
-def generate_message_when_one_absentee(absent_students, leave_due_today):
+def generate_message_when_one_absentee(absent_students, boarders_on_leave):
     absent_message = "Hi BMs, all boarders are in except:\n"
-    absent_students = absent_students.sort_values('Bed')
-    for _, row in absent_students.iterrows():
-        room_number = re.sub(r'^[^/]+/', '', row['Bed']).strip()
-        absent_message += f"- {room_number} {row['Boarder']}\n"
-    absent_message += "Have asked him to scan at level 1, will update again later."
-    leave_message = ""
+    for boarder in absent_students:
+        absent_message += f"- {boarder.bed} {boarder.name}\n"
 
-    if len(leave_due_today) > 0:
-        leave_message = "And those with leaves:\n"
-        leave_due_today = sorted(leave_due_today, key=lambda x: x['Bed'])
-        leave_pattern = r"(\w+) Leave\[Out on \d{2}/\d{2}/\d{4} \w+ \d{2}:\d{2} Come back on \d{2}/\d{2}/\d{4} \w+ (" \
-                        r"\d{2}:\d{2})"
-        for row in leave_due_today:
-            room_number = re.sub(r'^[^/]+/', '', row['Bed']).strip()
-            leave = row['Leave']
-            match = re.search(leave_pattern, leave)
-            if match:
-                leave_type = match.group(1)
-                return_time = match.group(2)
-                leave_message += f"- {room_number} {row['Boarder']} ({leave_type} Leave till {return_time})\n"
-
-    final_message = f"{absent_message}\n{leave_message}"
-    return final_message + "Thank you!"
-
-
-def generate_message_when_multiple_absentees(absent_students, leave_due_today):
-    absent_message = "Hi BMs, all boarders are in except:\n"
-    absent_students = absent_students.sort_values('Bed')
-    for _, row in absent_students.iterrows():
-        room_number = re.sub(r'^[^/]+/', '', row['Bed']).strip()
-        absent_message += f"- {room_number} {row['Boarder']}\n"
-    absent_message += "Have asked them to scan at level 1, will update again later."
+    absent_message += "I have asked him to scan at level 1, will update again later.\n"
 
     leave_message = ""
-    if len(leave_due_today) > 0:
-        leave_message = "And those with leaves:\n"
-        leave_due_today = sorted(leave_due_today, key=lambda x: x['Bed'])
-        leave_pattern = r"(\w+) Leave\[Out on \d{2}/\d{2}/\d{4} \w+ \d{2}:\d{2} Come back on \d{2}/\d{2}/\d{4} \w+ (" \
-                        r"\d{2}:\d{2})"
-        for row in leave_due_today:
-            room_number = re.sub(r'^[^/]+/', '', row['Bed']).strip()
-            leave = row['Leave']
-            match = re.search(leave_pattern, leave)
-            if match:
-                leave_type = match.group(1)
-                return_time = match.group(2)
-                leave_message += f"- {room_number} {row['Boarder']} ({leave_type} Leave till {return_time})\n"
+    if len(boarders_on_leave) > 0:
+        leave_message += "And those with leaves:\n"
+        for boarder in boarders_on_leave:
+            leave_message += f"- {boarder.bed} {boarder.name} ({boarder.leave.get_message_string()})\n"
 
-    final_message = f"{absent_message}\n{leave_message}"
-    return final_message + "Thank you!"
+    return f"{absent_message}{leave_message}Thank you!"
+
+
+def generate_message_when_multiple_absentees(absent_students, boarders_on_leave):
+    absent_message = "Hi BMs, all boarders are in except:\n"
+    for boarder in absent_students:
+        absent_message += f"- {boarder.bed} {boarder.name}\n"
+
+    absent_message += "I have asked them to scan at level 1, will update again later.\n"
+
+    leave_message = ""
+    if len(boarders_on_leave) > 0:
+        leave_message += "And those with leaves:\n"
+        for boarder in boarders_on_leave:
+            leave_message += f"- {boarder.bed} {boarder.name} ({boarder.leave.get_message_string()})\n"
+
+    return f"{absent_message}{leave_message}Thank you!"

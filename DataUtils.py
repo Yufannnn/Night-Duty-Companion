@@ -1,8 +1,11 @@
-import pandas as pd
 import re
-from datetime import datetime, timedelta
-
+from datetime import datetime
 from PyQt5.QtWidgets import QMessageBox
+
+from Bed import Bed
+from Boarder import Boarder
+from BoarderList import BoarderList
+from Leave import Leave
 
 
 def send_not_current_date_message():
@@ -21,94 +24,76 @@ def handle_drag_enter(event):
             event.acceptProposedAction()
 
 
-def check_if_file_is_attendance_file(df):
-    required_columns = ['ContactNo', 'Boarder', 'Bed', 'Date', 'Terminal Number', 'Scanned Time', 'Leave']
-
-    # Check if all required columns are present
-    missing_columns = [col for col in required_columns if col not in df.columns]
-    if missing_columns:
-        return False, f"Missing required columns: {', '.join(missing_columns)}"
-
-    # Check data types and format of specific columns
-    if not df['ContactNo'].astype(str).str.match(r'^\d{8}$').all():
-        return False
-
-    if not df['Boarder'].apply(lambda x: isinstance(x, str)).all():
-        return False
-
-    # All checks passed, it is an attendance file
-    return True
+def build_name(name_string):
+    return name_string.strip()
 
 
-def get_absent_students(df):
-    absent_students = []
-    leave_pattern = r"Come back on (\d{2}/\d{2}/\d{4}).*?(\d{2}:\d{2})"
+def build_contact_no(contact_no_string):
+    return str(contact_no_string).strip()
 
+
+def build_terminal_number(terminal_number_string):
+    if str(terminal_number_string) == 'nan':
+        return ''
+    return str(terminal_number_string).strip()
+
+
+def build_scanned_time(scanned_time_string):
+    if str(scanned_time_string) == 'nan':
+        return None
+    return datetime.strptime(str(scanned_time_string).strip(), "%H:%M")
+
+
+def build_bed(bed_string):
+    # Use regex to get the room number after the first / before the second /, and bed number after the second /
+    pattern = r'([^/]+)/(\d+\.\d+)/([A-Z]+)'
+    match = re.match(pattern, bed_string)
+    if match:
+        room_number = match.group(2)
+        bed_number = match.group(3)
+
+        bed = Bed(room_number, bed_number)
+        return bed
+
+
+def build_leave(leave_string):
+    if str(leave_string) == 'nan':
+        return None
+    leave_type = None
+    come_back_time = None
+
+    type_pattern = r'(\w+) Leave'
+    match = re.search(type_pattern, leave_string)
+    if match:
+        leave_type = match.group(1)
+
+    back_pattern = r'Come back on (\d{2}/\d{2}/\d{4} \w{3} \d{2}:\d{2})'
+    match = re.search(back_pattern, leave_string)
+    if match:
+        come_back_time_str = match.group(1)
+        come_back_time = datetime.strptime(come_back_time_str, "%d/%m/%Y %a %H:%M")
+
+    return Leave(leave_type, come_back_time)
+
+
+def build_boarder(row):
+    name = build_name(row['Boarder'])
+    contact_no = build_contact_no(row['ContactNo'])
+    terminal_number = build_terminal_number(row['Terminal Number'])
+    scanned_time = build_scanned_time(row['Scanned Time'])
+    bed = build_bed(row['Bed'])
+    leave = build_leave(row['Leave'])
+
+    return name, bed, contact_no, terminal_number, scanned_time, leave
+
+
+def build_boarder_list(df):
+    boarder_list = BoarderList()
     for _, row in df.iterrows():
-        scanned_time = row['Scanned Time']
-        leave = row['Leave']
+        name, bed, contact_no, terminal_number, scanned_time, leave = build_boarder(row)
+        boarder_list.add_boarder(Boarder(name, bed, contact_no, terminal_number, scanned_time, leave))
 
-        if pd.isnull(scanned_time):
-            if pd.isnull(leave):
-                absent_students.append(row)
-            else:
-                match = re.search(leave_pattern, leave)
-                if match:
-                    try:
-                        return_datetime = datetime.strptime(match.group(1) + " " + match.group(2), "%d/%m/%Y %H:%M")
-                        current_datetime = datetime.now()
-
-                        if return_datetime < current_datetime:
-                            absent_students.append(row)
-                    except ValueError:
-                        pass
-
-    # return a df of absent students
-    return pd.DataFrame(absent_students)
-
-
-def format_absent_students(absent_students):
-    # return - { Name, Room, Number}
-    # return as a string
-    if len(absent_students) == 0:
-        return "No absentees."
-
-    data = absent_students[['Boarder', 'Bed', 'ContactNo']]
-    absent_text = ""
-    for _, row in data.iterrows():
-        # use regex to get the room number everything after the first /
-        room_number = re.sub(r'^[^/]+/', '', row['Bed']).strip()
-        absent_text += str(row['ContactNo']) + " - " + room_number + " - " + row['Boarder'] + "\n"
-
-    return absent_text
-
-
-def get_leave_due_tonight(df, current_date):
-    leave_pattern = r"Come back on (\d{2}/\d{2}/\d{4}).*?(\d{2}:\d{2})"
-    leave_due_today = []
-
-    for _, row in df.iterrows():
-        leave = row['Leave']
-        if not pd.isnull(leave):
-            match = re.search(leave_pattern, leave)
-            if match:
-                if match.group(1) == current_date:
-                    return_datetime = datetime.strptime(match.group(1) + " " + match.group(2), "%d/%m/%Y %H:%M")
-                    current_datetime = datetime.now()
-                    if return_datetime < current_datetime:
-                        continue
-                    leave_due_today.append(row)
-                # if the date is tomorrow, check if the time is before 2:00 am
-                if match.group(1) == (datetime.now() + timedelta(days=1)).strftime("%d/%m/%Y"):
-                    return_datetime = datetime.strptime(match.group(1) + " " + match.group(2), "%d/%m/%Y %H:%M")
-                    # if it is earlier than 2:00 am midnight, add it to the list
-                    if return_datetime < (datetime.now() + timedelta(days=1)).replace(hour=2, minute=0, second=0,
-                                                                                      microsecond=0):
-                        leave_due_today.append(row)
-
-    # return a df of leave due tonight
-    return leave_due_today
-
+    return boarder_list
 
 def format_leave_due(leave_due_today):
     leave_text = ""
