@@ -1,7 +1,9 @@
-# NightDutyCompanion
+# Night Duty Companion
 [![pages-build-deployment](https://github.com/Yufannnn/NightDutyCompanion/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Yufannnn/NightDutyCompanion/actions/workflows/pages/pages-build-deployment)
 
 NightDutyCompanion is a simple desktop application designed to assist RIB RAs with RIB routine night duty.
+
+![image](docs\Result.jpg)
 
 ## Features
 
@@ -9,6 +11,7 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
 - Automatically generate messages to be sent to the Boarding Managers.
 - List absent boarders with their contact numbers and room numbers.
 - List boarders on leave with their leave due time.
+- RI styled GUI.
 
 ## Installation
 
@@ -37,7 +40,7 @@ pip install -r requirements.txt
 
 6. Once the dependencies are installed, run NightDutyCompanion by executing the following command in the terminal:
 ```
-python NightDutyCompanion.py
+NightDutyCompanion.py
 ```
 
 ## How to Use

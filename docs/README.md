@@ -1,4 +1,6 @@
-## User Guide
+NightDutyCompanion is a simple desktop application designed to assist RIB RAs with RIB routine night duty.
+
+![Analysis Result](Result.jpg)
 
 - [User Guide](#user-guide)
   * [Step 1: Export Attendance Data from BMS](#step-1--export-attendance-data-from-bms)
@@ -66,12 +68,14 @@
 
 ### Step 6: Check the Absent Boarders and Boarders on Leave
 
-1. You use the two check box list on the right side of  the app to help you keep track of the boarders status.
+1. You can use the two checkbox lists on the right side of the app to keep track of the boarders' status.
+2. When a absent or on-leave boarder is back, check the corresponding box to mark them as such. will be highlighted in green, providing better visualization.
 
-## More to Come..
+## More to Come … 
 
 1. Auto Fix Corrupted XLS Files: NightDutyCompanion will introduce an automatic file format fixing feature. Instead of manually saving the downloaded XLS file as a CSV, the application will handle the conversion process internally, ensuring that any corrupted format issues are resolved seamlessly.
-2. UI Beautification: NightDutyCompanion will undergo a UI enhancement to improve the overall visual appeal and user experience. The updated user interface will be more intuitive, user-friendly, and aesthetically pleasing, making it even easier to navigate and use the application effectively.
+2. Further UI Beautification: NightDutyCompanion will undergo further UI enhancement to improve the overall visual appeal and user experience. The updated user interface will be more intuitive, user-friendly, and aesthetically pleasing, making it even easier to navigate and use the application effectively.
+3. And more … 
 
 ## Disclaimer
 
