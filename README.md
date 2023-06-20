@@ -1,11 +1,11 @@
 # NightDutyCompanion
 
-NightDutyCompanion is a simple desktop application designed to assist with routine night duty management at a residential institution.
+NightDutyCompanion is a simple desktop application designed to assist RIB RAs with RIB routine night duty.
 
 ## Features
 
 - Analyze BMS attendance files.
-- Automatically generate messages to be sent to the BMS.
+- Automatically generate messages to be sent to the Boarding Managers.
 - List absent boarders with their contact numbers and room numbers.
 - List boarders on leave with their leave due time.
 
