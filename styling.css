@@ -1,0 +1,119 @@
+/* styling.css */
+QMainWindow {
+    border-radius: 10px;
+    background-color: #F0F0F0;
+}
+
+/* Body */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Labels */
+QLabel {
+    color: #333333;
+    font-weight: bold;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #006766;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+QPushButton:hover {
+    background-color: #009e9d
+}
+
+QFrame#drag_frame {
+    border: 3px dashed #AAAAAA;
+    background-color: white;
+}
+
+/* Text Area */
+QTextEdit {
+    background-color: white;
+    border: 1px solid #999999;
+    padding: 5px;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+/* Checkboxes */
+QCheckBox {
+    color: #555555;
+    font-weight: normal;
+}
+
+/* QScrollArea */
+QWidget#absent_area {
+    background-color: white;
+}
+
+QWidget#leave_area {
+    background-color: white
+}
+
+/* QScrollBar */
+QScrollBar:vertical {
+    background-color: #F5F5F5;
+    width: 12px;
+    margin: 0px;
+}
+QScrollBar::handle:vertical {
+    background-color: #CCCCCC;
+    border-radius: 6px;
+    min-height: 20px;
+}
+QScrollBar::handle:vertical:hover {
+    background-color: #BBBBBB;
+}
+
+/* set file_label font size to 15px */
+QLabel#file_label {
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+/* set other QLabel font size to 13px */
+QLabel {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+}
+
+
+/* QCheckBox */
+QCheckBox {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/* QCheckBox when checked */
+QCheckBox:checked {
+    background-color: #006766;
+    color: white;
+}
+
+/* QCheckBox when hovered */
+QCheckBox:hover {
+    /* Add styling for hover state */
+    background-color: #009e9d;
+    color: white;
+}
+
+/* QCheckBox when pressed */
+QCheckBox:pressed {
+    /* Add styling for pressed state */
+    background-color: #00d9d7;
+    color: white;
+}

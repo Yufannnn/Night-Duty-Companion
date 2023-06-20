@@ -2,3 +2,6 @@ build/
 NightDutyCompanion.spec
 dist/NightDutyCompanion.exe
 .idea/
+__pycache__/
+test.py
+dist/

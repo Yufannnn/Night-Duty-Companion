@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+import os
+
 import pandas as pd
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QFileDialog, QFrame, QTextEdit, QApplication, QCheckBox, \
     QVBoxLayout, QWidget, QScrollArea
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QFile
 
 import DataUtils as DataUtils
 import MessageUtils as MessageUtils
@@ -19,6 +22,16 @@ class MainWindow(QMainWindow):
         self.create_column_0()
         self.create_column_1()
 
+        # Get the path of the current file (MainWindow.py)
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+
+        # Construct the path to the styling.css file
+        css_file = os.path.join(current_dir, "styling.css")
+
+        # Set the stylesheet for the application
+        with open(css_file, "r") as f:
+            self.setStyleSheet(f.read())
+
     def create_column_0(self):
         column0_x = 0
         column0_y = 0
@@ -26,7 +39,7 @@ class MainWindow(QMainWindow):
         file_label_width = 700
         file_label_height = 20
         self.file_label = QLabel("No file selected.", self)
-        self.file_label.setStyleSheet("font-size: 15px;")
+        self.file_label.setObjectName("file_label")
         self.file_label.setGeometry(column0_x + 10, column0_y + 5, file_label_width, file_label_height)
 
         select_button_width = 400
@@ -36,10 +49,10 @@ class MainWindow(QMainWindow):
         self.select_file_button.setGeometry(column0_x + 10, column0_y + 35, select_button_width, select_button_height)
 
         drag_frame_width = 400
-        drag_frame_height = 100
+        drag_frame_height = 95
         self.drag_frame = QFrame(self)
-        self.drag_frame.setGeometry(column0_x + 10, column0_y + 75, drag_frame_width, drag_frame_height)
-        self.drag_frame.setStyleSheet("QFrame { border: 2px dashed #AAAAAA; }")
+        self.drag_frame.setGeometry(column0_x + 10, column0_y + 72, drag_frame_width, drag_frame_height)
+        self.drag_frame.setObjectName("drag_frame")
         self.drag_frame.setAcceptDrops(True)
         self.drag_frame.setToolTip("Drag and drop a CSV file here")
         self.drag_frame.installEventFilter(self)
@@ -49,17 +62,15 @@ class MainWindow(QMainWindow):
         self.drag_label.setAlignment(Qt.AlignCenter)
 
         generate_label_width = 400
-        generate_label_height = 15
+        generate_label_height = 20
         self.generate_label = QLabel("Generated Message", self)
-        self.generate_label.setStyleSheet("font-size: 12px;")
-        self.generate_label.setGeometry(column0_x + 10, column0_y + 180, generate_label_width, generate_label_height)
+        self.generate_label.setGeometry(column0_x + 10, column0_y + 172, generate_label_width, generate_label_height)
         self.generate_label.setAlignment(Qt.AlignCenter)
 
         text_area_width = 400
         text_area_height = 170
         self.text_area = QTextEdit(self)
         self.text_area.setGeometry(column0_x + 10, column0_y + 200, text_area_width, text_area_height)
-        self.text_area.setStyleSheet("font-size: 12px;")
 
         copy_button_width = 400
         copy_button_height = 30
@@ -74,19 +85,17 @@ class MainWindow(QMainWindow):
         absent_label_width = 275
         absent_label_height = 30
         self.absent_label = QLabel("Absent Boarders", self)
-        self.absent_label.setStyleSheet("font-size: 12px;")
         self.absent_label.setGeometry(column1_x + 150, column1_y + 25, absent_label_width, absent_label_height)
 
         absent_area_width = 368
         absent_area_height = 170
         self.absent_area_scroll = QScrollArea(self)
         self.absent_area_scroll.setGeometry(column1_x + 20, column1_y + 50, absent_area_width, absent_area_height)
-        self.absent_area_scroll.setStyleSheet("font-size: 12px;")
 
         self.absent_area = QWidget()
+        self.absent_area.setObjectName("absent_area")
         self.absent_area_scroll.setWidget(self.absent_area)
         self.absent_area_scroll.setWidgetResizable(True)
-        self.absent_area_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.absent_area_layout = QVBoxLayout(self.absent_area)
 
         # make all the widgets in teh absent area layout align to the top
@@ -95,20 +104,17 @@ class MainWindow(QMainWindow):
         leave_label_width = 275
         leave_label_height = 30
         self.leave_label = QLabel("Boarders on Leave", self)
-        self.leave_label.setStyleSheet("font-size: 12px;")
         self.leave_label.setGeometry(column1_x + 150, column1_y + 215, leave_label_width, leave_label_height)
 
         leave_area_width = 368
         leave_area_height = 170
         self.leave_area_scroll = QScrollArea(self)
         self.leave_area_scroll.setGeometry(column1_x + 20, column1_y + 240, leave_area_width, leave_area_height)
-        self.leave_area_scroll.setStyleSheet("font-size: 12px;")
-        self.leave_area_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
 
         self.leave_area = QWidget()
+        self.leave_area.setObjectName("leave_area")
         self.leave_area_scroll.setWidget(self.leave_area)
         self.leave_area_scroll.setWidgetResizable(True)
-        self.absent_area_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.leave_area_layout = QVBoxLayout(self.leave_area)
 
     def eventFilter(self, obj, event):
@@ -185,7 +191,6 @@ class MainWindow(QMainWindow):
 
         for boarder in absent_boarders:
             absent_boarder_checkbox = QCheckBox(boarder.to_absent_string(), self)
-            absent_boarder_checkbox.setStyleSheet("font-size: 12px;")
             self.absent_area_layout.addWidget(absent_boarder_checkbox)
 
         self.absent_area_layout.addStretch(1)
@@ -199,7 +204,6 @@ class MainWindow(QMainWindow):
 
         for boarder in on_leave_boarders:
             on_leave_boarder_checkbox = QCheckBox(boarder.to_leave_string(), self)
-            on_leave_boarder_checkbox.setStyleSheet("font-size: 12px;")
             self.leave_area_layout.addWidget(on_leave_boarder_checkbox)
 
         self.leave_area_layout.addStretch(1)
