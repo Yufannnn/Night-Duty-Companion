@@ -1,5 +1,17 @@
 ## User Guide
 
+- [User Guide](#user-guide)
+  * [Step 1: Export Attendance Data from BMS](#step-1--export-attendance-data-from-bms)
+  * [Step 2: Fixing Corrupted Format Issues](#step-2--fixing-corrupted-format-issues)
+  * [Step 3: Running NightDutyCompanion](#step-3--running-nightdutycompanion)
+  * [Step 4: Analyzing Attendance Data](#step-4--analyzing-attendance-data)
+  * [Step 5: Copying Generated Message](#step-5--copying-generated-message)
+  * [Step 6: Check the Absent Boarders and Boarders on Leave](#step-6--check-the-absent-boarders-and-boarders-on-leave)
+- [More to Come..](#more-to-come)
+- [Disclaimer](#disclaimer)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 ### Step 1: Export Attendance Data from BMS
 
 1. Login to the BMS (Boarding Management System).
@@ -44,26 +56,25 @@
    
    ![Analysis Result](Result.jpg)
    
-   Note: Boarder's information is blurred for privacy.
+   
 
 ### Step 5: Copying Generated Message
 
 1. You can directly copy the generated message by clicking the "Copy Generated Message" button.
 2. The message will be copied to your clipboard for easy pasting.
+3. The Generated Message sections in NightDutyCompanion is editable. Feel free to make any necessary edits to the text as needed.
 
-### Step 6: Editing Text Sections
+### Step 6: Check the Absent Boarders and Boarders on Leave
 
-1. All three text sections in NightDutyCompanion are editable.
-2. Feel free to make any necessary edits to the text as needed.
+1. You use the two check box list on the right side of  the app to help you keep track of the boarders status.
 
-## Coming Soon...
+## More to Come..
 
-In future updates, the Absent Boarders section and Boarders on Leaves section will be implemented as a checkbox list. This enhancement will allow for easier selection of boarders' names when performing duties. Stay tuned for these improvements in upcoming versions of NightDutyCompanion.
-
-And more …
+1. Auto Fix Corrupted XLS Files: NightDutyCompanion will introduce an automatic file format fixing feature. Instead of manually saving the downloaded XLS file as a CSV, the application will handle the conversion process internally, ensuring that any corrupted format issues are resolved seamlessly.
+2. UI Beautification: NightDutyCompanion will undergo a UI enhancement to improve the overall visual appeal and user experience. The updated user interface will be more intuitive, user-friendly, and aesthetically pleasing, making it even easier to navigate and use the application effectively.
 
 ## Disclaimer
 
 Please note that this project has not undergone rigorous testing and may contain potential bugs and feature flaws. If you encounter any issues or have suggestions for improvements, please kindly contact me or simply raise an issue in the IssueTracker of this Repo. Thank you for your understanding!
 
-Enjoy using NightDutyCompanion to streamline your night duty tasks!
+Enjoy!

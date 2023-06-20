@@ -27,7 +27,7 @@ Please refer to the [User Guide](https://yufannnn.github.io/NightDutyCompanion/)
 
 My friend and I have tested multiple times, the data downloading and cleaning process should last last than 1 minute. Also, the Automation process can prevent human errors, ideally.
 
-NightDutyCompanion is an ongoing project and may have potential bugs and feature limitations. Please don't solely rely on its results.
+NightDutyCompanion is an ongoing project and may have potential bugs and feature limitations. Please don't solely rely on its results at current stage.
 
 Your feedback and suggestions are greatly appreciated. If you encounter any issues or have ideas for improvement, please feel free to contact me.
 
