@@ -3,7 +3,7 @@
 
 NightDutyCompanion is a simple desktop application designed to assist RIB RAs with RIB routine night duty.
 
-![image](docs\Result.jpg)
+![image](docs/Result.jpg)
 
 ## Features
 
