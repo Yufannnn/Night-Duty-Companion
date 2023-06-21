@@ -2,19 +2,6 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
 
 ![Analysis Result](Result.jpg)
 
-- [User Guide](#user-guide)
-  * [Step 1: Export Attendance Data from BMS](#step-1--export-attendance-data-from-bms)
-  * [Step 2: Fixing Corrupted Format Issues](#step-2--fixing-corrupted-format-issues)
-  * [Step 3: Running NightDutyCompanion](#step-3--running-nightdutycompanion)
-  * [Step 4: Analyzing Attendance Data](#step-4--analyzing-attendance-data)
-  * [Step 5: Copying Generated Message](#step-5--copying-generated-message)
-  * [Step 6: Check the Absent Boarders and Boarders on Leave](#step-6--check-the-absent-boarders-and-boarders-on-leave)
-- [More to Come …](#more-to-come--)
-- [Disclaimer](#disclaimer)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
-
 ##  User Guide
 
 ### Step 1: Export Attendance Data from BMS
@@ -74,7 +61,7 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
 1. You can use the two checkbox lists on the right side of the app to keep track of the boarders' status.
 2. When a absent or on-leave boarder is back, check the corresponding box to mark them as such. will be highlighted in green, providing better visualization.
 
-## More to Come … 
+## More to Come
 
 1. Auto Fix Corrupted XLS Files: NightDutyCompanion will introduce an automatic file format fixing feature. Instead of manually saving the downloaded XLS file as a CSV, the application will handle the conversion process internally, ensuring that any corrupted format issues are resolved seamlessly.
 2. Further UI Beautification: NightDutyCompanion will undergo further UI enhancement to improve the overall visual appeal and user experience. The updated user interface will be more intuitive, user-friendly, and aesthetically pleasing, making it even easier to navigate and use the application effectively.
