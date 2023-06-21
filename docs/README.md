@@ -6,7 +6,7 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
 
 ### Step 1: Export Attendance Data from BMS
 
-1. Login to the BMS (Boarding Management System).
+1. Log in to the BMS (Boarding Management System).
 2. Navigate to the Attendant Listing section.
 3. Look for the button to export today's attendance data
    
@@ -16,7 +16,7 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
    
    ![Download](Download.jpg)
    
-   The download will start shortly, and you will have the attendance list saved as a .xls file.
+The download will start shortly, and you will have the attendance list saved as a .xls file.
 
 ### Step 2: Fixing Corrupted Format Issues
 
@@ -31,7 +31,7 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
    
    ![Save As CSV](CSV.jpg)
    
-   Saving it as a .csv file helps fix any corrupted format issues.
+Saving it as a .csv file helps fix any corrupted format issues.
 
 ### Step 3: Running NightDutyCompanion
 
@@ -54,12 +54,12 @@ NightDutyCompanion is a simple desktop application designed to assist RIB RAs wi
 
 1. You can directly copy the generated message by clicking the "Copy Generated Message" button.
 2. The message will be copied to your clipboard for easy pasting.
-3. The Generated Message sections in NightDutyCompanion is editable. Feel free to make any necessary edits to the text as needed.
+3. The Generated Message section in NightDutyCompanion is editable. Feel free to make any necessary edits to the text as needed.
 
 ### Step 6: Check the Absent Boarders and Boarders on Leave
 
 1. You can use the two checkbox lists on the right side of the app to keep track of the boarders' status.
-2. When a absent or on-leave boarder is back, check the corresponding box to mark them as such. will be highlighted in green, providing better visualization.
+2. When an absent or on-leave boarder is back, check the corresponding box to mark them as such. will be highlighted in green, providing better visualization.
 
 ## More to Come
 
