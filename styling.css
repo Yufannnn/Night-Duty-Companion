@@ -17,7 +17,6 @@ QLabel {
     font-weight: bold;
 }
 
-/* Buttons */
 QPushButton {
     background-color: #006766;
     color: white;
@@ -29,7 +28,7 @@ QPushButton {
 }
 
 QPushButton:hover {
-    background-color: #009e9d
+    background-color: #009e9d;
 }
 
 QFrame#drag_frame {

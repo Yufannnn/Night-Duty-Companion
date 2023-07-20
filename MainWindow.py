@@ -1,15 +1,27 @@
 # -*- coding: utf-8 -*-
 import os
-
 import pandas as pd
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QFileDialog, QFrame, QTextEdit, QApplication, QCheckBox, \
     QVBoxLayout, QWidget, QScrollArea
-from PyQt5.QtCore import Qt, QFile
+from PyQt5.QtCore import Qt
 
 import DataUtils as DataUtils
 import MessageUtils as MessageUtils
 import ValidationUtils
+
+
+class BoarderCheckBox(QCheckBox):
+    def __init__(self, boarder, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.boarder = boarder
+
+    def to_absent_string(self):
+        return f"{self.boarder.name} - {self.boarder.room_number}"
+
+    def to_leave_string(self):
+        leave_info = self.boarder.leave.get_message_string()
+        return f"{self.boarder.name} - {self.boarder.room_number} ({leave_info})"
 
 
 class MainWindow(QMainWindow):
@@ -72,11 +84,17 @@ class MainWindow(QMainWindow):
         self.text_area = QTextEdit(self)
         self.text_area.setGeometry(column0_x + 10, column0_y + 200, text_area_width, text_area_height)
 
-        copy_button_width = 400
-        copy_button_height = 30
+        button_width = 195
+        button_height = 30
+        button_spacing = 10
+
         self.copy_button = QPushButton("Copy Generated Message", self)
         self.copy_button.clicked.connect(self.copy_message)
-        self.copy_button.setGeometry(column0_x + 10, column0_y + 380, copy_button_width, copy_button_height)
+        self.copy_button.setGeometry(column0_x + 10, column0_y + 380, button_width, button_height)
+
+        self.update_button = QPushButton("Update Message", self)
+        self.update_button.clicked.connect(self.update_message)  # Add the update_message function
+        self.update_button.setGeometry(column0_x + 15 + button_width, column0_y + 380, button_width, button_height)
 
     def create_column_1(self):
         column1_x = 400
@@ -178,6 +196,30 @@ class MainWindow(QMainWindow):
 
         return generated_message, absent_boarders, on_leave_boarders
 
+    def update_message(self):
+        still_absent_boarders = []
+        still_on_leave_boarders = []
+
+        # Get the unchecked boarders from the absent boarders section
+        for i in range(self.absent_area_layout.count()):
+            widget = self.absent_area_layout.itemAt(i).widget()
+            if isinstance(widget, QCheckBox) and not widget.isChecked():
+                still_absent_boarders.append(widget)
+
+        # Get the unchecked boarders from the boarders on leave section
+        for i in range(self.leave_area_layout.count()):
+            widget = self.leave_area_layout.itemAt(i).widget()
+            if isinstance(widget, QCheckBox) and not widget.isChecked():
+                still_on_leave_boarders.append(widget)
+
+        # Call the function from MessageUtils.py
+        updated_message = MessageUtils.generate_message_from_dropdown_list(
+            still_absent_boarders, still_on_leave_boarders
+        )
+
+        # Update the text area with the new message
+        self.text_area.setText(updated_message)
+
     def copy_message(self):
         clipboard = QApplication.clipboard()
         clipboard.setText(self.text_area.toPlainText())
@@ -191,6 +233,7 @@ class MainWindow(QMainWindow):
 
         for boarder in absent_boarders:
             absent_boarder_checkbox = QCheckBox(boarder.to_absent_string(), self)
+            absent_boarder_checkbox.boarder = boarder  # Set the 'boarder' attribute
             self.absent_area_layout.addWidget(absent_boarder_checkbox)
 
         self.absent_area_layout.addStretch(1)
@@ -204,6 +247,8 @@ class MainWindow(QMainWindow):
 
         for boarder in on_leave_boarders:
             on_leave_boarder_checkbox = QCheckBox(boarder.to_leave_string(), self)
+            on_leave_boarder_checkbox.boarder = boarder  # Set the 'boarder' attribute
             self.leave_area_layout.addWidget(on_leave_boarder_checkbox)
 
         self.leave_area_layout.addStretch(1)
+
