@@ -9,6 +9,11 @@ from Leave import Leave
 
 
 def send_not_current_date_message():
+    """
+    Send a message box to inform the user that the file selected is not dated today.
+
+    :return: None
+    """
     message_box = QMessageBox()
     message_box.setWindowTitle("Error")
     message_box.setText("Please select a file that is dated today.")
@@ -18,6 +23,12 @@ def send_not_current_date_message():
 
 
 def handle_drag_enter(event):
+    """
+    Handle the drag enter event.
+
+    :param event: the drag enter event
+    :return: None
+    """
     if event.mimeData().hasUrls() and len(event.mimeData().urls()) == 1:
         file_path = event.mimeData().urls()[0].toLocalFile()
         if file_path.lower().endswith('.csv'):
@@ -33,19 +44,36 @@ def build_contact_no(contact_no_string):
 
 
 def build_terminal_number(terminal_number_string):
+    """
+    Build the terminal number from the string.
+
+    :param terminal_number_string: the string of the terminal number
+    :return: the terminal number
+    """
     if str(terminal_number_string) == 'nan':
         return ''
     return str(terminal_number_string).strip()
 
 
 def build_scanned_time(scanned_time_string):
+    """
+    Build the scanned time from the string.
+
+    :param scanned_time_string: the string of the scanned time
+    :return: the scanned time
+    """
     if str(scanned_time_string) == 'nan':
         return None
     return datetime.strptime(str(scanned_time_string).strip(), "%H:%M")
 
 
 def build_bed(bed_string):
-    # Use regex to get the room number after the first / before the second /, and bed number after the second /
+    """
+    Build the bed from the string.
+
+    :param bed_string: the string of the bed
+    :return: the bed
+    """
     pattern = r'([^/]+)/(\d+\.\d+)/([A-Z]+)'
     match = re.match(pattern, bed_string)
     if match:
@@ -57,6 +85,12 @@ def build_bed(bed_string):
 
 
 def build_leave(leave_string):
+    """
+    Build the leave from the string.
+
+    :param leave_string: the string of the leave
+    :return: the leave
+    """
     if str(leave_string) == 'nan':
         return None
     leave_type = None
@@ -77,6 +111,12 @@ def build_leave(leave_string):
 
 
 def build_boarder(row):
+    """
+    Build the boarder from the row.
+
+    :param row: the row of the csv file
+    :return: the boarder
+    """
     name = build_name(row['Boarder'])
     contact_no = build_contact_no(row['ContactNo'])
     terminal_number = build_terminal_number(row['Terminal Number'])
@@ -88,6 +128,12 @@ def build_boarder(row):
 
 
 def build_boarder_list(df):
+    """
+    Build the boarder list from the dataframe.
+
+    :param df: the dataframe
+    :return: the boarder list
+    """
     boarder_list = BoarderList()
     for _, row in df.iterrows():
         name, bed, contact_no, terminal_number, scanned_time, leave = build_boarder(row)
@@ -95,7 +141,14 @@ def build_boarder_list(df):
 
     return boarder_list
 
+
 def format_leave_due(leave_due_today):
+    """
+    Format the leave due today.
+
+    :param leave_due_today: the list of leave due today
+    :return: the formatted leave due today
+    """
     leave_text = ""
     if len(leave_due_today) == 0:
         return "No leaves due today."

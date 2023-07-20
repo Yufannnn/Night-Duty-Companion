@@ -12,6 +12,9 @@ import ValidationUtils
 
 
 class BoarderCheckBox(QCheckBox):
+    """
+    A custom QCheckBox that has a 'boarder' attribute.
+    """
     def __init__(self, boarder, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.boarder = boarder
@@ -45,6 +48,11 @@ class MainWindow(QMainWindow):
             self.setStyleSheet(f.read())
 
     def create_column_0(self):
+        """
+        Create the widgets in column 0.
+
+        :return: None
+        """
         column0_x = 0
         column0_y = 0
 
@@ -97,6 +105,11 @@ class MainWindow(QMainWindow):
         self.update_button.setGeometry(column0_x + 15 + button_width, column0_y + 380, button_width, button_height)
 
     def create_column_1(self):
+        """
+        Create the widgets in column 1.
+
+        :return: None
+        """
         column1_x = 400
         column1_y = 0
 
@@ -144,6 +157,12 @@ class MainWindow(QMainWindow):
         return super().eventFilter(obj, event)
 
     def handle_drop(self, event):
+        """
+        Handle the drop event.
+
+        :param event: the drop event
+        :return: None
+        """
         file_path = event.mimeData().urls()[0].toLocalFile()
         if file_path:
             self.file_label.setText(file_path)
@@ -165,6 +184,11 @@ class MainWindow(QMainWindow):
         event.acceptProposedAction()
 
     def select_csv_file(self):
+        """
+        Open a file dialog to select a CSV file.
+
+        :return: None
+        """
         options = QFileDialog.Options()
         file_path, _ = QFileDialog.getOpenFileName(self, "Select CSV File", "", "CSV Files (*.csv)", options=options)
 
@@ -183,6 +207,12 @@ class MainWindow(QMainWindow):
             self.file_label.setText("No file selected.")
 
     def generate_message(self, file_path):
+        """
+        Generate the message to be displayed in the text area.
+
+        :param file_path: the path of the CSV file
+        :return: the message to be displayed in the text area
+        """
         df = pd.read_csv(file_path)
 
         is_valid, error_message = ValidationUtils.check_if_file_is_attendance_file(df)
@@ -197,6 +227,11 @@ class MainWindow(QMainWindow):
         return generated_message, absent_boarders, on_leave_boarders
 
     def update_message(self):
+        """
+        Update the message in the text area.
+
+        :return: None
+        """
         still_absent_boarders = []
         still_on_leave_boarders = []
 
@@ -221,11 +256,21 @@ class MainWindow(QMainWindow):
         self.text_area.setText(updated_message)
 
     def copy_message(self):
+        """
+        Copy the message in the text area to the clipboard.
+
+        :return: None
+        """
         clipboard = QApplication.clipboard()
         clipboard.setText(self.text_area.toPlainText())
 
     def populate_absent_area(self, absent_boarders):
-        # Clear previously added widgets
+        """
+        Populate the absent area with the absent boarders.
+
+        :param absent_boarders: the absent boarders
+        :return: None
+        """
         while self.absent_area_layout.count():
             widget = self.absent_area_layout.takeAt(0).widget()
             if widget:
@@ -239,7 +284,12 @@ class MainWindow(QMainWindow):
         self.absent_area_layout.addStretch(1)
 
     def populate_leave_area(self, on_leave_boarders):
-        # Clear previously added widgets
+        """
+        Populate the leave area with the boarders on leave.
+
+        :param on_leave_boarders: the boarders on leave
+        :return: None
+        """
         while self.leave_area_layout.count():
             widget = self.leave_area_layout.takeAt(0).widget()
             if widget:

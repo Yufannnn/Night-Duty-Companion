@@ -2,6 +2,12 @@ import re
 
 
 def check_if_file_is_attendance_file(df):
+    """
+    Check if the file is a valid attendance file.
+
+    :param df: the dataframe of the file
+    :return: True if the file is a valid attendance file, False otherwise
+    """
     required_columns = ['ContactNo', 'Boarder', 'Bed', 'Date', 'Terminal Number', 'Scanned Time', 'Leave']
 
     # Check if all required columns are present
@@ -23,6 +29,12 @@ def check_if_file_is_attendance_file(df):
 
 
 def check_bed(address):
+    """
+    Check if the address is a valid bed address.
+
+    :param address: the address
+    :return: True if the address is a valid bed address, False otherwise
+    """
     pattern = r'.+\/\d+\.\d+\/[A-Z]'
     match = re.match(pattern, address)
 
@@ -33,6 +45,12 @@ def check_bed(address):
 
 
 def check_number(number):
+    """
+    Check if the number is a valid number.
+
+    :param number: the number
+    :return: True if the number is a valid number, False otherwise
+    """
     pattern = r'^\d+$'
     match = re.match(pattern, number)
 
@@ -43,6 +61,12 @@ def check_number(number):
 
 
 def check_leave(leave):
+    """
+    Check if the leave is a valid leave.
+
+    :param leave: the leave
+    :return: True if the leave is a valid leave, False otherwise
+    """
     if leave == "nan":
         return True
 

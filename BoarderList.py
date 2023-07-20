@@ -6,7 +6,11 @@ class BoarderList:
         self.boarderList.append(boarder)
 
     def get_absent_boarders(self):
-        # return all boarders who are absent, sorted by bed
+        """
+        Return all boarders who are absent, sorted by bed number.
+
+        :return: all boarders who are absent, sorted by bed number
+        """
         absent_boarders = []
         for boarder in self.boarderList:
             if boarder.is_absent():
@@ -15,7 +19,11 @@ class BoarderList:
         return sorted(absent_boarders, key=lambda boarder: boarder.bed)
 
     def get_on_leave_boarders(self):
-        # return all boarders who are on leave, sorted by come back time
+        """
+        Return all boarders who are on leave, sorted by return time.
+
+        :return: all boarders who are on leave, sorted by return time
+        """
         on_leave_boarders = []
         for boarder in self.boarderList:
             if boarder.is_on_leave():

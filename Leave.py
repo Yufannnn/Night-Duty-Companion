@@ -10,6 +10,11 @@ class Leave:
         return self.return_time.date() == datetime.now().date()
 
     def is_tomorrow_earlier_than_2am(self):
+        """
+        Check if the return time is tomorrow and earlier than 2am.
+
+        :return: True if the return time is tomorrow and earlier than 2am, False otherwise
+        """
         return self.return_time.date() ==  (datetime.now() + timedelta(days=1)).date() and self.return_time.hour < 2
 
     def is_overdue(self):
