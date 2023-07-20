@@ -1,16 +1,20 @@
 # NightDutyCompanion User Guide 🌙
 
-## Step 1: Export Attendance Data from BMS
+## Step 1: Export Attendance Data from BMS 📊
 
 1. Log in to the BMS (Boarding Management System).
 2. Navigate to the Attendant Listing section.
 3. Look for the button to export today's attendance data.
 
-   ![BMS Export Button](BMS.jpg)
+   <p align="center">
+     <img src="BMS.jpg" alt="BMS Export Button" width="200px">
+   </p>
 
 4. Click the export button to initiate the download of today's attendance list in `.xls` format.
 
-   ![Download](Download.jpg)
+   <p align="center">
+     <img src="Download.jpg" alt="Download" width="500px">
+   </p>
 
 The download will start shortly, and you will have the attendance list saved as a `.xls` file.
 
@@ -25,7 +29,9 @@ The download will start shortly, and you will have the attendance list saved as 
 4. In Excel, click the `File` option in the menu bar.
 5. Select `Save As...` to save the file as a `.csv` (Comma Separated Values) file.
 
-   ![Save As CSV](CSV.jpg)
+   <p align="center">
+     <img src="CSV.jpg" alt="Save As CSV" width="500px">
+   </p>
 
 Saving it as a `.csv` file helps fix any corrupted format issues.
 
@@ -33,7 +39,9 @@ Saving it as a `.csv` file helps fix any corrupted format issues.
 
 1. Run the `NightDutyCompanion.exe` program. A window will appear.
 
-   ![NightDutyCompanion Window](Window.jpg)
+   <p align="center">
+     <img src="Window.jpg" alt="NightDutyCompanion Window" width="800px">
+   </p>
 
 2. Upload the `.csv` file by either clicking the `Select CSV File` button and selecting the file, or simply dragging and dropping the file into the window.
 
@@ -42,13 +50,15 @@ Saving it as a `.csv` file helps fix any corrupted format issues.
 1. Once the `.csv` file is uploaded, NightDutyCompanion will automatically analyze the attendance data.
 2. The analysis result will be displayed in the window.
 
-   ![Analysis Result](Result.jpg)
+   <p align="center">
+     <img src="Result.jpg" alt="Analysis Result" width="800px">
+   </p>
 
 ## Step 5: Copying Generated Message 📋
 
 1. You can directly copy the generated message by clicking the `Copy Generated Message` button.
 2. The message will be copied to your clipboard for easy pasting.
-3. The `Generated Message` section in NightDutyCompanion is editable. Feel free to make any necessary edits to the text as needed.
+3. The `Generated Message` section in NightDutyCompanion is editable. Feel free to make any necessary changes to the text as needed.
 
 ## Step 6: Check the Absent Boarders and Boarders on Leave ☑️
 
@@ -61,7 +71,9 @@ Saving it as a `.csv` file helps fix any corrupted format issues.
 2. The message will be updated with the boarders who are still absent or on leave, based on the status of the checkbox lists.
 3. The message can be copied again by clicking the `Copy Generated Message` button.
 
-   ![Updated Message](Update.jpg)
+   <p align="center">
+     <img src="Update.jpg" alt="Updated Message" width="800px">
+   </p>
 
 ## More to Come 💡
 
