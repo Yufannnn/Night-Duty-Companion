@@ -15,6 +15,12 @@ def generate_message(absent_boarders, on_leave_boarders):
 
 
 def generate_message_when_no_absentees(on_leave_boarders):
+    """
+    Generate the message to be sent to BMs when there are no absentees.
+
+    :param on_leave_boarders:
+    :return: the message to be sent to BMs
+    """
     if len(on_leave_boarders) == 0:
         return "Hi BMs, all boarders are in and there is no one with leaves today.\nThank you!"
     else:
