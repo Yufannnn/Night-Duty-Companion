@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NightDutyCompanion Web</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styling.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+</head>
+<body>
+    <h1>Welcome to NightDutyCompanion Web</h1>
+    <form action="/" class="dropzone" id="upload-csv">
+    </form>
+
+    {% if boarders %}
+        <h2>Boarders' Statuses</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Bed</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for boarder in boarders.boarderList %}
+                    <tr>
+                        <td>{{ boarder.name }}</td>
+                        <td>{{ boarder.bed }}</td>
+                        <td>
+                            {% if boarder.is_absent() %}
+                                Absent
+                            {% elif boarder.is_on_leave() %}
+                                On Leave
+                            {% else %}
+                                Present
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% if absent_messages %}
+    <h3>Absent Boarders:</h3>
+    <ul>
+        {% for message in absent_messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% if leave_messages %}
+    <h3>Boarders on Leave:</h3>
+    <ul>
+        {% for message in leave_messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<script>
+        Dropzone.options.uploadCsv = {
+            maxFilesize: 2,  // MB
+            acceptedFiles: ".csv",
+            init: function() {
+                this.on("success", function(file, responseText) {
+                    // Handle the response (reload page, show message, etc.)
+                    location.reload();
+                });
+            }
+        };
+    </script>
+</body>
+</html>

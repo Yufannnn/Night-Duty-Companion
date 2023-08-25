@@ -31,3 +31,6 @@ class BoarderList:
                     on_leave_boarders.append(boarder)
 
         return sorted(on_leave_boarders, key=lambda boarder: boarder.leave.return_time)
+
+    def __repr__(self):
+        return f"BoarderList({self.boarderList})"
