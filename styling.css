@@ -1,14 +1,14 @@
-/* styling.css */
-QMainWindow {
-    border-radius: 10px;
-    background-color: #F0F0F0;
-}
-
-/* Body */
+/* Global styles */
 body {
     background-color: #f0f0f0;
     font-family: Arial, sans-serif;
     font-size: 14px;
+}
+
+/* Main window styles */
+QMainWindow {
+    border-radius: 10px;
+    background-color: #f0f0f0;
 }
 
 /* Labels */
@@ -17,6 +17,7 @@ QLabel {
     font-weight: bold;
 }
 
+/* Buttons */
 QPushButton {
     background-color: #006766;
     color: white;
@@ -31,8 +32,9 @@ QPushButton:hover {
     background-color: #009e9d;
 }
 
+/* Drag frame */
 QFrame#drag_frame {
-    border: 3px dashed #AAAAAA;
+    border: 3px dashed #aaaaaa;
     background-color: white;
 }
 
@@ -49,47 +51,6 @@ QTextEdit {
 QCheckBox {
     color: #555555;
     font-weight: normal;
-}
-
-/* QScrollArea */
-QWidget#absent_area {
-    background-color: white;
-}
-
-QWidget#leave_area {
-    background-color: white
-}
-
-/* QScrollBar */
-QScrollBar:vertical {
-    background-color: #F5F5F5;
-    width: 12px;
-    margin: 0px;
-}
-QScrollBar::handle:vertical {
-    background-color: #CCCCCC;
-    border-radius: 6px;
-    min-height: 20px;
-}
-QScrollBar::handle:vertical:hover {
-    background-color: #BBBBBB;
-}
-
-/* set file_label font size to 15px */
-QLabel#file_label {
-    font-size: 15px;
-    font-family: Arial, sans-serif;
-}
-
-/* set other QLabel font size to 13px */
-QLabel {
-    font-size: 13px;
-    font-family: Arial, sans-serif;
-}
-
-
-/* QCheckBox */
-QCheckBox {
     font-size: 13px;
     font-family: Arial, sans-serif;
     border: 1px solid #999999;
@@ -97,22 +58,52 @@ QCheckBox {
     padding: 5px;
 }
 
-/* QCheckBox when checked */
 QCheckBox:checked {
     background-color: #006766;
     color: white;
 }
 
-/* QCheckBox when hovered */
 QCheckBox:hover {
-    /* Add styling for hover state */
     background-color: #009e9d;
     color: white;
 }
 
-/* QCheckBox when pressed */
 QCheckBox:pressed {
-    /* Add styling for pressed state */
     background-color: #00d9d7;
     color: white;
+}
+
+/* Scroll Area */
+QWidget#absent_area,
+QWidget#leave_area {
+    background-color: white;
+}
+
+/* Scroll Bar */
+QScrollBar:vertical {
+    background-color: #f5f5f5;
+    width: 12px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #cccccc;
+    border-radius: 6px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #bbbbbb;
+}
+
+/* File Label */
+QLabel#file_label {
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+/* Other QLabel styles */
+QLabel {
+    font-size: 13px;
+    font-family: Arial, sans-serif;
 }

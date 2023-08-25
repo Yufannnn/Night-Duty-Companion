@@ -5,3 +5,4 @@ dist/NightDutyCompanion.exe
 __pycache__/
 test.py
 dist/
+venv/
