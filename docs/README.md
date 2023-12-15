@@ -1,5 +1,7 @@
 # NightDutyCompanion User Guide 🌙
 
+![Night Duty Companion](../Night.png)
+
 ## Step 1: Export Attendance Data from BMS 📊
 
 1. Log in to the BMS (Boarding Management System).
