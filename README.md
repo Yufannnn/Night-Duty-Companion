@@ -19,13 +19,13 @@ NightDutyCompanion can be installed using the following methods based on your op
 
 ### Windows 🪟
 
-1. Download the executable file from the [NightDutyCompanion releases page](https://github.com/Yufannnn/NightDutyCompanion/releases/).
+1. Download the executable file from the [NightDutyCompanion releases page](https://github.com/Yufannnn/Night-Duty-Companion/releases/).
 
 2. 🚀 Run the downloaded executable file `NightDutyCompanion.exe` to install NightDutyCompanion. There is no need for additional dependencies or Python installation.
 
 ### macOS and Linux 🍎🐧
 
-1. Download the source code from the [NightDutyCompanion releases page](https://github.com/Yufannnn/NightDutyCompanion/releases/).
+1. Download the source code from the [NightDutyCompanion releases page](https://github.com/Yufannnn/Night-Duty-Companion/releases/).
 
 2. Extract the downloaded zip file.
 
@@ -46,7 +46,7 @@ NightDutyCompanion.py
 
 ## ℹ️ How to Use
 
-Please refer to the [User Guide](https://yufannnn.github.io/NightDutyCompanion/) for detailed instructions on how to use NightDutyCompanion. The user guide provides step-by-step explanations and screenshots to help you get started with the application.
+Please refer to the [User Guide](https://yufannnn.github.io/Night-Duty-Companion/) for detailed instructions on how to use NightDutyCompanion. The user guide provides step-by-step explanations and screenshots to help you get started with the application.
 
 ## 📝 Note
 
